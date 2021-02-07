@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using LeilaoOnline.WebApp.Models;
 
-namespace LeilaoOnline.WebApp.Dados
+namespace LeilaoOnline.WebApp.Dados.EfCore
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : DbContext, IAppDbContext
     {
         public DbSet<Leilao> Leiloes { get; set; }
         public DbSet<Categoria> Categorias { get; set; }

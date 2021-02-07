@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace LeilaoOnline.WebApp.Dados
+namespace LeilaoOnline.WebApp.Dados.EfCore
 {
     //DAO -> DataAcessObject
-    public class LeilaoDAO
+    public class LeilaoDAO : ILeilaoDAO
     {
         AppDbContext _context;
 
@@ -29,7 +29,7 @@ namespace LeilaoOnline.WebApp.Dados
         public IEnumerable<Leilao> BuscarLeiloes()
         {
             return _context.Leiloes.Include(l => l.Categoria).ToList();
-            //.Include -> Carregamento adiantado de outra tabela
+            //.Include -> Carregamento adiantado de outra tabela (Join)
         }
 
         public void Incluir(Leilao leilao)

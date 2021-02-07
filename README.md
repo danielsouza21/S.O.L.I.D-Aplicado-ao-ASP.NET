@@ -16,8 +16,12 @@ Refatoração de um código aplicando principios do S.O.L.I.D e outras conveçõ
 
 ### Outros termos e teorias estudados
 
-- Divida técnica
+- Termo "Divida técnica"
+- Princípio DRY (Dont repeat yourself)
+- Single Source of Truth
 
-### Ações tomadas:
+### Ações realizadas:
 
-- Refatoração de controllers extraindo destes os métodos de manipulação do Database para uma classe DAO (DataAcessObject), com objetivo de retirar esta responsabilidade das classes em questão.
+- Refatoração de controllers extraindo destes os métodos de manipulação do Database para uma classe DAO (DataAcessObject), com objetivo de retirar esta responsabilidade das classes em questão e evitar repetição de código [SRP];
+
+- Implementação de Injeção de dependência com ILeilaoDAO, diminuindo o acoplamento dos controllers e proporcionando maior estabilidade do software com a inverção de dependência [DIP];

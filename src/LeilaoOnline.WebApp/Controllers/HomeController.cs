@@ -9,11 +9,11 @@ namespace LeilaoOnline.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        AppDbContext _context;
+        IAppDbContext _context;
 
-        public HomeController()
+        public HomeController(IAppDbContext context)
         {
-            _context = new AppDbContext();
+            _context = context;
         }
 
         public IActionResult Index()

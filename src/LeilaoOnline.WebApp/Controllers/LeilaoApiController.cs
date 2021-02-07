@@ -9,11 +9,11 @@ namespace LeilaoOnline.WebApp.Controllers
     public class LeilaoApiController : ControllerBase
     {
         //AppDbContext _context;
-        LeilaoDAO _dao;
+        ILeilaoDAO _dao;
 
-        public LeilaoApiController()
+        public LeilaoApiController(ILeilaoDAO dao)
         {
-            _dao = new LeilaoDAO(); //Sem injeção de dependência!
+            _dao = dao;
         }
 
         [HttpGet]

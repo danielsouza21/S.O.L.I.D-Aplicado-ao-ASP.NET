@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using LeilaoOnline.WebApp.Dados;
 using LeilaoOnline.WebApp.Models;
 using System;
-using System.Collections.Generic;
 
 namespace LeilaoOnline.WebApp.Controllers
 {
@@ -11,11 +10,11 @@ namespace LeilaoOnline.WebApp.Controllers
     {
 
         //AppDbContext _context;
-        LeilaoDAO _dao;
+        ILeilaoDAO _dao;
 
-        public LeilaoController()
+        public LeilaoController(ILeilaoDAO dao)
         {
-            _dao = new LeilaoDAO(); //Sem injeção de dependência!
+            _dao = dao;
         }
 
         public IActionResult Index()

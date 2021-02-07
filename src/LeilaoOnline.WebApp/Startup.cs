@@ -1,3 +1,5 @@
+using LeilaoOnline.WebApp.Dados;
+using LeilaoOnline.WebApp.Dados.EfCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +15,9 @@ namespace LeilaoOnline.WebApp
                 {
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
+
+            services.AddSingleton<IAppDbContext, AppDbContext>();
+            services.AddTransient<ILeilaoDAO, LeilaoDAO>();
         }
 
         public void Configure(IApplicationBuilder app)
