@@ -1,4 +1,6 @@
-# Projeto para o curso de SOLID com .NET
+# Projeto para o estudo de SOLID com .NET
+
+Refatoração de um código aplicando principios do S.O.L.I.D e outras conveções.
 
 ### S.O.L.I.D
 
@@ -15,3 +17,7 @@
 ### Outros termos e teorias estudados
 
 - Divida técnica
+
+### Ações tomadas:
+
+- Refatoração de controllers extraindo destes os métodos de manipulação do Database para uma classe DAO (DataAcessObject), com objetivo de retirar esta responsabilidade das classes em questão.
