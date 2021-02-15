@@ -10,7 +10,7 @@ namespace LeilaoOnline.WebApp.Dados.EfCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=LeiloesDB;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = LeiloesDB; Trusted_Connection = True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

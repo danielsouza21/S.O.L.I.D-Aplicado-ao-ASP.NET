@@ -21,12 +21,12 @@ namespace LeilaoOnline.WebApp.Dados.EfCore
             return _context.Categorias.ToList();
         }
 
-        public Leilao BurcarPorId(int id)
+        public Leilao BuscarPorId(int id)
         {
             return _context.Leiloes.First(l => l.Id == id);
         }
 
-        public IEnumerable<Leilao> BuscarLeiloes()
+        public IEnumerable<Leilao> BuscarTodos()
         {
             return _context.Leiloes.Include(l => l.Categoria).ToList();
             //.Include -> Carregamento adiantado de outra tabela (Join)

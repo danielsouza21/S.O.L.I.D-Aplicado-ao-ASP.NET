@@ -1,34 +1,21 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using LeilaoOnline.WebApp.Dados;
-using LeilaoOnline.WebApp.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using LeilaoOnline.WebApp.Services;
 
 namespace LeilaoOnline.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        IAppDbContext _context;
+        IProdutoService _service;
 
-        public HomeController(IAppDbContext context)
+        public HomeController(IProdutoService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public IActionResult Index()
         {
-            var categorias = _context.Categorias
-                .Include(c => c.Leiloes)
-                .Select(c => new CategoriaComInfoLeilao
-                {
-                    Id = c.Id,
-                    Descricao = c.Descricao,
-                    Imagem = c.Imagem,
-                    EmRascunho = c.Leiloes.Where(l => l.Situacao == SituacaoLeilao.Rascunho).Count(),
-                    EmPregao = c.Leiloes.Where(l => l.Situacao == SituacaoLeilao.Pregao).Count(),
-                    Finalizados = c.Leiloes.Where(l => l.Situacao == SituacaoLeilao.Finalizado).Count(),
-                });
+            var categorias = _service.ConsultaCategoriasComTotalDeLeiloesEmPregao();
             return View(categorias);
         }
 
@@ -40,25 +27,18 @@ namespace LeilaoOnline.WebApp.Controllers
         }
 
         [Route("[controller]/Categoria/{categoria}")]
-        public IActionResult Categoria(int categoria)
+        public IActionResult Categoria(int categoriaId)
         {
-            var categ = _context.Categorias
-                .Include(c => c.Leiloes)
-                .First(c => c.Id == categoria);
-            return View(categ);
+            var categoria = _service.ConsultaCategoriaPorIdComLeiloesEmPregao(categoriaId);
+            return View(categoria);
         }
 
         [HttpPost]
         [Route("[controller]/Busca")]
         public IActionResult Busca(string termo)
         {
-            ViewData["termo"] = termo;
-            var termoNormalized = termo.ToUpper();
-            var leiloes = _context.Leiloes
-                .Where(c =>
-                    c.Titulo.ToUpper().Contains(termoNormalized) ||
-                    c.Descricao.ToUpper().Contains(termoNormalized) ||
-                    c.Categoria.Descricao.ToUpper().Contains(termoNormalized));
+            ViewData["termo"] = termo; 
+            var leiloes = _service.PesquisaLeiloesEmPregaoPorTermo(termo);
             return View(leiloes);
         }
     }

@@ -16,12 +16,18 @@ Refatoração de um código aplicando principios do S.O.L.I.D e outras conveçõ
 
 ### Outros termos e teorias estudados
 
-- Termo "Divida técnica"
 - Princípio DRY (Dont repeat yourself)
 - Single Source of Truth
+- Clean/Onion Architecture
 
 ### Ações realizadas:
 
 - Refatoração de controllers extraindo destes os métodos de manipulação do Database para uma classe DAO (DataAcessObject), com objetivo de retirar esta responsabilidade das classes em questão e evitar repetição de código [SRP];
 
 - Implementação de Injeção de dependência com ILeilaoDAO, diminuindo o acoplamento dos controllers e proporcionando maior estabilidade do software com a inverção de dependência [DIP];
+
+- Criação de camada de negócios para centralização de casos de uso [SRP + DIP];
+
+- Implementação de classes mais especificas substituindo implementações default, com o objetivo de se seguir o principio [OCP + LSP];
+
+- Refatoração das interfaces DAO, definindo interfaces mais especificas e garantindo a total implementação das abstrações propostas [ISP];

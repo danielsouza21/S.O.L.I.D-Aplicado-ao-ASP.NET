@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using LeilaoOnline.WebApp.Models;
-using LeilaoOnline.WebApp.Dados;
+using LeilaoOnline.WebApp.Dados.EfCore;
 
 namespace LeilaoOnline.WebApp.Seeding
 {

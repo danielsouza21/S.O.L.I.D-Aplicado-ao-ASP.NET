@@ -3,13 +3,8 @@ using System.Collections.Generic;
 
 namespace LeilaoOnline.WebApp.Dados
 {
-    public interface ILeilaoDAO
+    public interface ILeilaoDAO : ICommand<Leilao>, IQuery<Leilao>
     {
-        void Alterar(Leilao leilao);
-        Leilao BurcarPorId(int id);
-        IEnumerable<Categoria> BuscarCategorias();
-        IEnumerable<Leilao> BuscarLeiloes();
-        void Excluir(Leilao leilao);
-        void Incluir(Leilao leilao);
+        public IEnumerable<Categoria> BuscarCategorias();
     }
 }
